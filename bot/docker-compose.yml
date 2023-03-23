@@ -1,0 +1,11 @@
+#set up a container to run a python program
+version: "3.7"
+services:
+    Discbot:
+        image: discbot
+        container_name: discbot
+        restart: unless-stopped
+        ports:
+            - 8082:80
+            - 4432:443
+        build: ./requirement
