@@ -6,12 +6,17 @@ import requests
 import matplotlib.pyplot as plt
 import pandas as pd
 import logging
-
+import os
+from dotenv import load_dotenv
+load_dotenv()
 # Setup logging
 logging.basicConfig(filename='error.log', level=logging.ERROR, format='%(asctime)s - %(levelname)s - %(message)s')
-
+if "OPEN_WEATHER_KEY" not in os.environ:
+    logging.error("OPEN_WEATHER_KEY is not set")
+    print("OPEN_WEATHER_KEY is not set")
+    exit(1)
 # Constants
-API_KEY = '8d9b44ec1599779bc3c3f248d9937d82'
+API_KEY = os.getenv('OPEN_WEATHER_KEY')
 PARIS_LAT = 48.8566
 PARIS_LON = 2.3522
 MEASUREMENT_INTERVAL = 5 * 60  # 5 minutes in seconds
